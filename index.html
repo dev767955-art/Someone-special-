@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f9c5dc">
+  <title>Someone Special 💗</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="background-hearts" id="backgroundHearts"></div>
+
+  <main class="container">
+
+    <!-- SECTION 1: WELCOME -->
+    <section class="screen active" id="section1">
+      <div class="content">
+        <div class="big-heart">💗</div>
+        <p class="small-heading">A LITTLE SURPRISE FOR YOU</p>
+        <h1>Hey, <span>SOMEONE SPECIAL!</span></h1>
+        <p class="description">
+          I made a little something for you.
+          A tiny journey filled with feelings,
+          surprises and a little bit of magic.
+        </p>
+        <button class="main-btn" onclick="goToSection(2)">
+          OPEN YOUR SURPRISE 💗
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 2: MAGICAL COMPASS -->
+    <section class="screen" id="section2">
+      <div class="content">
+        <p class="small-heading">A LITTLE MAGIC</p>
+        <h1>The Magical Compass 🧭</h1>
+        <p class="description">
+          Sometimes, the heart knows its own direction.
+        </p>
+
+        <button class="compass-button" id="compassButton"
+                onclick="transformCompass()">
+          <div class="compass">
+            <span class="north">N</span>
+            <span class="south">S</span>
+            <div class="needle"></div>
+            <div class="compass-center"></div>
+          </div>
+          <div class="heart-result">💗</div>
+        </button>
+
+        <p class="tap-text" id="compassHint">
+          TAP THE COMPASS TO DISCOVER ✨
+        </p>
+
+        <p class="reveal-message" id="compassMessage">
+          Maybe my heart was never looking for a direction...
+          Maybe it was looking for you.
+        </p>
+
+        <button class="main-btn hidden" id="compassNext"
+                onclick="goToSection(3)">
+          NEXT SURPRISE 🌷
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 3: OUR LITTLE WORLD OF CHATS -->
+    <section class="screen" id="section3">
+      <div class="content">
+        <p class="small-heading">LITTLE CONVERSATIONS, BIG FEELINGS</p>
+        <h1>Our Little World of Chats 💬</h1>
+        <p class="description">
+          Every conversation has its own little magic.
+        </p>
+
+        <div class="chat-window">
+          <div class="chat-top">
+            <span>💗</span>
+            <div>
+              <strong>SOMEONE SPECIAL</strong>
+              <small>Our little world ✨</small>
+            </div>
+            <span class="online-dot"></span>
+          </div>
+
+          <div class="chat-body" id="chatBody">
+            <p class="chat-placeholder">
+              A little story is waiting for you...
+            </p>
+          </div>
+        </div>
+
+        <button class="main-btn" id="chatButton"
+                onclick="showNextChat()">
+          OPEN OUR CHAT 💌
+        </button>
+
+        <p class="description hidden" id="chatEnding">
+          We may have met through a screen, but you became
+          a beautiful part of my real world. 💗
+        </p>
+
+        <button class="main-btn hidden" id="chatNext"
+                onclick="goToSection(4)">
+          NEXT SURPRISE 🌷
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THINGS I ADORE -->
+    <section class="screen" id="section4">
+      <div class="content">
+        <p class="small-heading">A FEW LITTLE THINGS</p>
+        <h1>Things I Adore About You 🌷</h1>
+        <p class="description">
+          Some things deserve to be appreciated.
+          Tap each card to discover a little message.
+        </p>
+
+        <div class="card-grid">
+          <button class="love-card" onclick="revealCard(this, 0)">
+            <span>🌸</span>
+            <strong>Your Personality</strong>
+            <small>Tap to reveal</small>
+            <p class="card-message"></p>
+          </button>
+
+          <button class="love-card" onclick="revealCard(this, 1)">
+            <span>💬</span>
+            <strong>Your Conversations</strong>
+            <small>Tap to reveal</small>
+            <p class="card-message"></p>
+          </button>
+
+          <button class="love-card" onclick="revealCard(this, 2)">
+            <span>✨</span>
+            <strong>Your Little Gestures</strong>
+            <small>Tap to reveal</small>
+            <p class="card-message"></p>
+          </button>
+
+          <button class="love-card" onclick="revealCard(this, 3)">
+            <span>💗</span>
+            <strong>Your Presence</strong>
+            <small>Tap to reveal</small>
+            <p class="card-message"></p>
+          </button>
+        </div>
+
+        <button class="main-btn hidden" id="cardsNext"
+                onclick="goToSection(5)">
+          NEXT SURPRISE 🌷
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 5: A LITTLE SECRET -->
+    <section class="screen" id="section5">
+      <div class="content">
+        <p class="small-heading">PSST... A LITTLE SECRET</p>
+        <h1>A Little Secret 🤫</h1>
+
+        <div class="envelope-area">
+          <div class="envelope" id="envelope">
+            <div class="letter">
+              <span>💌</span>
+              <p>For Someone Special</p>
+            </div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-heart">💗</div>
+          </div>
+        </div>
+
+        <p class="description">
+          There's a little secret hidden inside this letter...
+        </p>
+
+        <button class="main-btn" id="letterButton"
+                onclick="openLetter()">
+          OPEN MY LITTLE SECRET 💌
+        </button>
+
+        <p class="reveal-message" id="letterMessage">
+          I don't know exactly when it happened, but you slowly
+          became someone I started looking forward to talking
+          to every single day. 💗
+        </p>
+
+        <button class="main-btn hidden" id="letterNext"
+                onclick="goToSection(6)">
+          NEXT SURPRISE ✨
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 6: BEFORE PROPOSAL -->
+    <section class="screen" id="section6">
+      <div class="content">
+        <div class="big-heart pulse">💗</div>
+        <p class="small-heading">ONE LAST THING...</p>
+        <h1>Before I Tell You Something ✨</h1>
+
+        <p class="description">
+          Sometimes, the most beautiful feelings
+          are the hardest ones to put into words...
+        </p>
+
+        <button class="main-btn" onclick="goToSection(7)">
+          CONTINUE ✨
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 7: PROPOSAL INTRO -->
+    <section class="screen" id="section7">
+      <div class="content">
+        <div class="big-heart">💗</div>
+
+        <p class="small-heading">FROM THE BOTTOM OF MY HEART</p>
+
+        <h1>There's something I've wanted
+          to tell you for a while...</h1>
+
+        <button class="main-btn" id="okayButton"
+                onclick="revealProposal()">
+          OKAY
+        </button>
+
+        <p class="proposal-message" id="proposalMessage">
+          You became one of the most special people in my life.
+          And somewhere along the way, my feelings became
+          more than friendship.
+        </p>
+
+        <button class="main-btn hidden" id="proposalNext"
+                onclick="goToSection(8)">
+          ONE LAST QUESTION... 💗
+        </button>
+      </div>
+    </section>
+
+    <!-- FINAL SCREEN: GIRLFRIEND PROPOSAL -->
+    <section class="screen" id="section8">
+      <div class="content final-content">
+        <div class="big-heart pulse">💗</div>
+
+        <p class="small-heading">THIS IS THE MOMENT</p>
+
+        <h1>Will you be more than
+          my best friend?</h1>
+
+        <h2>Will you be my
+          <span>GIRLFRIEND?</span>
+        </h2>
+
+        <p class="final-emojis">
+          !!!✨️🌷😉🌷✨️!!!<br>
+          🥺👉👈🥹!!!
+        </p>
+
+        <div class="final-buttons">
+          <button class="main-btn yes-btn"
+                  onclick="answerProposal('yes')">
+            YES! 💗
+          </button>
+
+          <button class="main-btn time-btn"
+                  onclick="answerProposal('time')">
+            I NEED SOME TIME 🌷
+          </button>
+        </div>
+
+        <p class="final-response hidden" id="finalResponse"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Made with love, just for SOMEONE SPECIAL 💗
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
