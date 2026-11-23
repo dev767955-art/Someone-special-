@@ -1,593 +1,200 @@
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* SECTION NAVIGATION */
+
+function goToSection(number) {
+  const target = document.getElementById("section" + number);
+
+  if (!target) {
+    return;
+  }
+
+  document.querySelectorAll(".screen").forEach(function(section) {
+    section.classList.remove("active");
+  });
+
+  target.classList.add("active");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
-:root {
-  --pink: #f4a7c5;
-  --light-pink: #fce4ec;
-  --deep-pink: #d94f91;
-  --dark-pink: #a83268;
-  --gold: #d4af72;
+
+/* FLOATING HEARTS */
+
+function createFloatingHeart() {
+  const container = document.getElementById("hearts");
+
+  if (!container) {
+    return;
+  }
+
+  const heart = document.createElement("span");
+
+  heart.className = "floating-heart";
+  heart.textContent = ["♡", "♥", "💗", "💕"][
+    Math.floor(Math.random() * 4)
+  ];
+
+  heart.style.left = Math.random() * 100 + "%";
+  heart.style.fontSize = (14 + Math.random() * 18) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+  container.appendChild(heart);
+
+  setTimeout(function() {
+    heart.remove();
+  }, 11000);
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #fff0f6, #f9c5dc, #fce4ec);
-  color: #87345d;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+setInterval(createFloatingHeart, 900);
 
-.background-hearts {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
 
-.floating-heart {
-  position: absolute;
-  bottom: -50px;
-  animation: floatUp linear infinite;
-  opacity: 0.45;
-}
+/* ADORE CARDS */
 
-@keyframes floatUp {
-  to {
-    transform: translateY(-110vh) rotate(360deg);
-    opacity: 0;
+let revealedCards = 0;
+
+function revealCard(card) {
+  if (card.classList.contains("revealed")) {
+    return;
+  }
+
+  card.classList.add("revealed");
+  revealedCards++;
+
+  const progress = document.getElementById("cardProgress");
+
+  if (progress) {
+    progress.textContent = revealedCards + " / 6 cards discovered";
+  }
+
+  if (revealedCards === 6) {
+    document.getElementById("adoreNext").classList.remove("hidden");
   }
 }
 
-.container {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  min-height: 90vh;
-}
 
-.screen {
-  display: none;
-  min-height: 90vh;
-  padding: 55px 20px;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.8s ease;
-}
+/* LOVE LETTER */
 
-.screen.active {
-  display: flex;
-}
+function openLetter() {
+  const letter = document.getElementById("loveLetter");
+  const envelope = document.getElementById("envelopeButton");
+  const nextButton = document.getElementById("letterNext");
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.content {
-  width: 100%;
-  max-width: 680px;
-  margin: auto;
-  text-align: center;
-}
-
-.big-heart {
-  font-size: 75px;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 5px 15px #e77ba8);
-}
-
-.pulse {
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  50% {
-    transform: scale(1.15);
-  }
-}
-
-.small-heading {
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: var(--deep-pink);
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-h1, h2 {
-  font-family: 'Playfair Display', serif;
-  color: var(--dark-pink);
-  font-weight: 600;
-}
-
-h1 {
-  font-size: clamp(30px, 6vw, 48px);
-  line-height: 1.3;
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: clamp(25px, 5vw, 36px);
-  margin-top: 20px;
-}
-
-h1 span, h2 span {
-  color: var(--deep-pink);
-}
-
-.description {
-  max-width: 520px;
-  margin: 20px auto;
-  line-height: 1.9;
-  color: #90506e;
-  font-size: 14px;
-}
-
-.main-btn {
-  border: 1px solid #ffffff;
-  background: linear-gradient(135deg, #f7a9ca, #df6fa4);
-  color: white;
-  padding: 15px 30px;
-  border-radius: 40px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  cursor: pointer;
-  box-shadow: 0 8px 25px #d85e943d;
-  margin-top: 25px;
-  transition: 0.3s;
-}
-
-.main-btn:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 12px 30px #d85e9466;
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* COMPASS */
-
-.compass-button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  margin: 20px auto;
-  display: block;
-}
-
-.compass {
-  width: 190px;
-  height: 190px;
-  border: 5px solid var(--gold);
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff9fc, #f6b9d3);
-  box-shadow: 0 0 30px #e98bb9;
-  position: relative;
-  transition: 1.5s;
-}
-
-.compass::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border: 1px solid #d7a3b7;
-  border-radius: 50%;
-}
-
-.north, .south {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-weight: bold;
-  font-size: 20px;
-  color: var(--dark-pink);
-  z-index: 2;
-}
-
-.north {
-  top: 10px;
-}
-
-.south {
-  bottom: 10px;
-}
-
-.needle {
-  position: absolute;
-  width: 4px;
-  height: 105px;
-  background: linear-gradient(to bottom, #d94f91 50%, #fff 50%);
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  transition: 1.5s;
-}
-
-.compass-center {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: var(--gold);
-  border-radius: 50%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-}
-
-.compass.transformed {
-  transform: rotate(360deg) scale(0.1);
-  opacity: 0;
-}
-
-.heart-result {
-  font-size: 100px;
-  height: 0;
-  opacity: 0;
-  transform: scale(0);
-  transition: 1s;
-}
-
-.compass-button.transformed .heart-result {
-  opacity: 1;
-  transform: scale(1);
-  height: 120px;
-  animation: pulse 1.5s infinite;
-}
-
-.tap-text {
-  font-size: 11px;
-  letter-spacing: 2px;
-  margin: 20px;
-  color: var(--deep-pink);
-}
-
-.reveal-message {
-  display: none;
-  max-width: 500px;
-  margin: 25px auto;
-  font-family: 'Playfair Display', serif;
-  font-size: 23px;
-  line-height: 1.6;
-  color: var(--dark-pink);
-  animation: fadeIn 1s;
-}
-
-.reveal-message.show {
-  display: block;
-}
-
-/* CHAT SECTION */
-
-.chat-window {
-  background: #fffafd;
-  border: 2px solid #f3c1d7;
-  border-radius: 22px;
-  max-width: 430px;
-  margin: 25px auto;
-  overflow: hidden;
-  box-shadow: 0 10px 30px #d85e9425;
-  text-align: left;
-}
-
-.chat-top {
-  background: #f7c1d9;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.chat-top strong {
-  display: block;
-  font-size: 12px;
-}
-
-.chat-top small {
-  font-size: 10px;
-}
-
-.online-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #69b77c;
-  margin-left: auto;
-}
-
-.chat-body {
-  min-height: 180px;
-  padding: 18px;
-}
-
-.chat-placeholder {
-  text-align: center;
-  padding: 60px 5px;
-  font-size: 12px;
-  color: #b57b97;
-}
-
-.chat-bubble {
-  width: fit-content;
-  max-width: 85%;
-  padding: 12px 15px;
-  border-radius: 16px;
-  font-size: 12px;
-  line-height: 1.7;
-  margin: 12px 0;
-  animation: fadeIn 0.6s;
-}
-
-.chat-left {
-  background: #fce4ec;
-  border-bottom-left-radius: 3px;
-}
-
-.chat-right {
-  background: #f3bad2;
-  margin-left: auto;
-  border-bottom-right-radius: 3px;
-}
-
-/* CARDS */
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin: 30px 0;
-}
-
-.love-card {
-  min-height: 165px;
-  background: #fff8fb;
-  border: 1px solid #f3bdd4;
-  border-radius: 20px;
-  padding: 20px 12px;
-  color: var(--dark-pink);
-  font-family: 'Poppins', sans-serif;
-  box-shadow: 0 8px 20px #d85e9415;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.love-card:hover {
-  transform: translateY(-5px);
-}
-
-.love-card span {
-  display: block;
-  font-size: 30px;
-  margin-bottom: 12px;
-}
-
-.love-card strong {
-  font-size: 12px;
-  display: block;
-}
-
-.love-card small {
-  display: block;
-  margin-top: 8px;
-  font-size: 10px;
-  color: #b57b97;
-}
-
-.card-message {
-  font-size: 11px;
-  line-height: 1.6;
-  margin-top: 12px;
-}
-
-/* ENVELOPE */
-
-.envelope-area {
-  margin: 50px auto;
-  height: 170px;
-  display: flex;
-  justify-content: center;
-}
-
-.envelope {
-  width: 190px;
-  height: 125px;
-  position: relative;
-  background: #e88eb5;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px #d85e9440;
-}
-
-.envelope::before, .envelope::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  z-index: 2;
-}
-
-.envelope::before {
-  left: 0;
-  border-width: 62px 95px 0 0;
-  border-color: #f4b5d0 transparent transparent transparent;
-}
-
-.envelope::after {
-  right: 0;
-  border-width: 62px 0 0 95px;
-  border-color: #e98bb8 transparent transparent transparent;
-}
-
-.envelope-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-left: 95px solid transparent;
-  border-right: 95px solid transparent;
-  border-top: 80px solid #d95b96;
-  transform-origin: top;
-  transition: 0.8s;
-  z-index: 4;
-}
-
-.envelope-heart {
-  position: absolute;
-  top: 45px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 30px;
-  z-index: 5;
-}
-
-.letter {
-  position: absolute;
-  background: #fff8fb;
-  width: 160px;
-  height: 110px;
-  left: 15px;
-  bottom: 5px;
-  border-radius: 5px;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 12px;
-  transition: 0.8s;
-}
-
-.letter span {
-  font-size: 25px;
-}
-
-.envelope.open .envelope-flap {
-  transform: rotateX(180deg);
-}
-
-.envelope.open .letter {
-  transform: translateY(-85px);
-  z-index: 5;
-}
-
-/* PROPOSAL */
-
-.proposal-message {
-  display: none;
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  line-height: 1.8;
-  color: var(--dark-pink);
-  margin: 30px auto;
-  max-width: 560px;
-}
-
-.proposal-message.show {
-  display: block;
-  animation: fadeIn 1s;
-}
-
-.final-content {
-  max-width: 750px;
-}
-
-.final-emojis {
-  font-size: 25px;
-  line-height: 2;
-  margin: 25px;
-}
-
-.final-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-.yes-btn {
-  min-width: 190px;
-  background: linear-gradient(135deg, #ed76aa, #cf4085);
-}
-
-.time-btn {
-  background: #fff7fa;
-  color: #ad4776;
-  border: 1px solid #e8a7c5;
-  box-shadow: none;
-}
-
-.final-response {
-  margin: 30px auto;
-  max-width: 500px;
-  font-family: 'Playfair Display', serif;
-  font-size: 23px;
-  color: var(--dark-pink);
-  animation: fadeIn 1s;
-}
-
-footer {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 20px;
-  font-size: 11px;
-  color: #a64d76;
-}
-
-/* MOBILE RESPONSIVE */
-
-@media (max-width: 480px) {
-  .screen {
-    padding: 40px 18px;
+  if (!letter || !envelope || !nextButton) {
+    return;
   }
 
-  .big-heart {
-    font-size: 60px;
+  letter.classList.remove("hidden");
+  envelope.classList.add("hidden");
+  nextButton.classList.remove("hidden");
+}
+
+
+/* PROPOSAL REVEAL */
+
+function revealProposal() {
+  const reveal = document.getElementById("proposalReveal");
+  const button = document.getElementById("revealButton");
+  const nextButton = document.getElementById("proposalNext");
+
+  if (!reveal || !button || !nextButton) {
+    return;
   }
 
-  .card-grid {
-    gap: 10px;
-  }
+  reveal.classList.remove("hidden");
+  button.classList.add("hidden");
+  nextButton.classList.remove("hidden");
+}
 
-  .love-card {
-    padding: 15px 8px;
-  }
 
-  .compass {
-    width: 165px;
-    height: 165px;
-  }
+/* CONFETTI ANIMATION */
 
-  .needle {
-    height: 90px;
-  }
+function launchConfetti() {
+  const symbols = ["💗", "💕", "✨", "🌸", "💖", "🎀"];
+  const total = 45;
 
-  .final-emojis {
-    font-size: 19px;
+  for (let i = 0; i < total; i++) {
+    const piece = document.createElement("span");
+
+    piece.className = "confetti";
+    piece.textContent = symbols[
+      Math.floor(Math.random() * symbols.length)
+    ];
+
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.fontSize = (12 + Math.random() * 17) + "px";
+    piece.style.animationDelay = (Math.random() * 0.8) + "s";
+
+    document.body.appendChild(piece);
+
+    setTimeout(function() {
+      piece.remove();
+    }, 4000);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
+
+/* YES BUTTON */
+
+function sayYes() {
+  const message = document.getElementById("answerMessage");
+
+  message.textContent = "Aww! Thank you for sharing your feelings! 💗";
+  message.classList.remove("hidden");
+
+  launchConfetti();
+
+  setTimeout(function() {
+    goToSection(9);
+  }, 1800);
+}
+
+
+/* NEED SOME TIME BUTTON */
+
+function needTime() {
+  const message = document.getElementById("answerMessage");
+
+  message.textContent =
+    "Of course! Take all the time you need. No pressure at all. " +
+    "Tumhara comfort aur honest feelings sabse important hain. 🌷";
+
+  message.classList.remove("hidden");
+}
+
+
+/* REPLAY WEBSITE */
+
+function replayWebsite() {
+
+  // Reset adore cards
+  revealedCards = 0;
+
+  document.querySelectorAll(".adore-card").forEach(function(card) {
+    card.classList.remove("revealed");
+  });
+
+  document.getElementById("cardProgress").textContent =
+    "0 / 6 cards discovered";
+
+  document.getElementById("adoreNext").classList.add("hidden");
+
+  // Reset letter
+  document.getElementById("loveLetter").classList.add("hidden");
+  document.getElementById("envelopeButton").classList.remove("hidden");
+  document.getElementById("letterNext").classList.add("hidden");
+
+  // Reset proposal
+  document.getElementById("proposalReveal").classList.add("hidden");
+  document.getElementById("revealButton").classList.remove("hidden");
+  document.getElementById("proposalNext").classList.add("hidden");
+
+  // Reset final question
+  document.getElementById("answerMessage").classList.add("hidden");
+  document.getElementById("answerMessage").textContent = "";
+
+  // Return to welcome page
+  goToSection(1);
 }
