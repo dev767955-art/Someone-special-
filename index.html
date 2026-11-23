@@ -4,260 +4,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ffe4ef">
+  <meta name="theme-color" content="#ffeaf2">
   <title>Someone Special 💗</title>
+
+  <!-- Safety styles: pages stay hidden even if CSS file has a loading issue -->
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .screen { display: none; }
+    .screen.active { display: block; }
+    .hidden { display: none !important; }
+  </style>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+  <div class="floating-layer" id="hearts" aria-hidden="true"></div>
 
-  <div class="background-hearts" id="hearts"></div>
-
-  <main class="website">
+  <main class="site">
 
     <!-- SECTION 1: WELCOME -->
     <section class="screen active" id="section1">
-
-      <div class="content-card">
-        <div class="top-emoji">🌷</div>
-
-        <p class="small-heading">A LITTLE SOMETHING FOR YOU</p>
-
+      <article class="card">
+        <div class="emoji">🌷</div>
+        <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
         <h1>Hey, Someone Special! 💗</h1>
-
-        <p class="description">
+        <p class="intro">
           Tumhare liye kuch chhota sa banaya hai...
           Bas dil se banaya hai, toh please end tak dekhna! 🥺
         </p>
+        <div class="decoration">♡ ✨ ♡</div>
 
-        <div class="cute-decoration">♡ ✨ ♡</div>
-
-        <div class="nav-buttons">
-          <button class="back-btn" disabled>← BACK</button>
-          <button class="main-btn" onclick="goToSection(2)">
+        <nav class="nav">
+          <button class="back" disabled>← BACK</button>
+          <button class="primary" onclick="goToSection(2)">
             OPEN YOUR SURPRISE 🌸
           </button>
-        </div>
-      </div>
-
+        </nav>
+      </article>
     </section>
-
 
     <!-- SECTION 2: OUR UNIVERSE -->
     <section class="screen" id="section2">
-
-      <div class="content-card">
-
-        <div class="top-emoji">🌙</div>
-
-        <p class="small-heading">A LITTLE WORLD OF OURS</p>
-
+      <article class="card">
+        <div class="emoji">🌙</div>
+        <p class="eyebrow">A LITTLE WORLD OF OURS</p>
         <h2>Our Cute Little Universe</h2>
-
-        <p class="description">
+        <p class="intro">
           Socho ek aisi duniya jahan sirf cute moments,
           endless talks aur beautiful memories ho...
         </p>
 
-        <div class="universe-card">
-          <div class="universe-item">🌸</div>
-          <h3>Little Moments</h3>
-          <p>Chhoti-chhoti baatein jo special ban jaati hain.</p>
+        <div class="universe">
+          <div class="universe-item">
+            <span>🌸</span>
+            <h3>Little Moments</h3>
+            <p>Chhoti-chhoti baatein jo special ban jaati hain.</p>
+          </div>
+
+          <div class="universe-item">
+            <span>⭐</span>
+            <h3>Random Happiness</h3>
+            <p>Bina kisi reason ke smile aa jaana.</p>
+          </div>
+
+          <div class="universe-item">
+            <span>🧸</span>
+            <h3>Comfort Zone</h3>
+            <p>Jahan bas apna sa feel hota hai.</p>
+          </div>
         </div>
 
-        <div class="universe-card">
-          <div class="universe-item">⭐</div>
-          <h3>Random Happiness</h3>
-          <p>Bina kisi reason ke smile aa jaana.</p>
-        </div>
-
-        <div class="universe-card">
-          <div class="universe-item">🧸</div>
-          <h3>Comfort Zone</h3>
-          <p>Jahan bas apna sa feel hota hai.</p>
-        </div>
-
-        <div class="nav-buttons">
-          <button class="back-btn" onclick="goToSection(1)">
-            ← BACK
-          </button>
-          <button class="main-btn" onclick="goToSection(3)">
-            NEXT →
-          </button>
-        </div>
-
-      </div>
+        <nav class="nav">
+          <button class="back" onclick="goToSection(1)">← BACK</button>
+          <button class="primary" onclick="goToSection(3)">NEXT →</button>
+        </nav>
+      </article>
     </section>
-
 
     <!-- SECTION 3: THINGS I ADORE -->
     <section class="screen" id="section3">
-
-      <div class="content-card">
-
-        <div class="top-emoji">💗</div>
-
-        <p class="small-heading">SOME LITTLE THINGS</p>
-
+      <article class="card">
+        <div class="emoji">💗</div>
+        <p class="eyebrow">SOME LITTLE THINGS</p>
         <h2>Things I Adore About You</h2>
-
-        <p class="description">
+        <p class="intro">
           Har card ko tap karo aur ek cute si baat discover karo! ✨
         </p>
 
         <div class="adore-grid">
-
           <button class="adore-card" onclick="revealCard(this)">
             <span class="card-emoji">😊</span>
-            <span class="card-title">Your Smile</span>
-            <span class="card-message">
-              Tumhari smile sach mein din ko better bana deti hai!
-            </span>
-            <span class="tap-hint">Tap to reveal 💌</span>
+            <strong>Your Smile</strong>
+            <span class="message">Tumhari smile sach mein din ko better bana deti hai!</span>
+            <small>Tap to reveal 💌</small>
           </button>
 
           <button class="adore-card" onclick="revealCard(this)">
             <span class="card-emoji">🌷</span>
-            <span class="card-title">Your Nature</span>
-            <span class="card-message">
-              Tumhara sweet aur caring nature bahut special hai.
-            </span>
-            <span class="tap-hint">Tap to reveal 💌</span>
+            <strong>Your Nature</strong>
+            <span class="message">Tumhara sweet aur caring nature bahut special hai.</span>
+            <small>Tap to reveal 💌</small>
           </button>
 
           <button class="adore-card" onclick="revealCard(this)">
             <span class="card-emoji">😂</span>
-            <span class="card-title">Your Talks</span>
-            <span class="card-message">
-              Tumse random baatein karna bhi ek alag happiness hai.
-            </span>
-            <span class="tap-hint">Tap to reveal 💌</span>
+            <strong>Your Talks</strong>
+            <span class="message">Tumse random baatein karna bhi ek alag happiness hai.</span>
+            <small>Tap to reveal 💌</small>
           </button>
 
           <button class="adore-card" onclick="revealCard(this)">
             <span class="card-emoji">✨</span>
-            <span class="card-title">Your Vibe</span>
-            <span class="card-message">
-              Tumhari presence hi moments ko special bana deti hai.
-            </span>
-            <span class="tap-hint">Tap to reveal 💌</span>
+            <strong>Your Vibe</strong>
+            <span class="message">Tumhari presence hi moments ko special bana deti hai.</span>
+            <small>Tap to reveal 💌</small>
           </button>
 
           <button class="adore-card" onclick="revealCard(this)">
             <span class="card-emoji">🦋</span>
-            <span class="card-title">Your Uniqueness</span>
-            <span class="card-message">
-              Tum jaisi ho, waise hi bahut wonderful ho.
-            </span>
-            <span class="tap-hint">Tap to reveal 💌</span>
+            <strong>Your Uniqueness</strong>
+            <span class="message">Tum jaisi ho, waise hi bahut wonderful ho.</span>
+            <small>Tap to reveal 💌</small>
           </button>
 
           <button class="adore-card" onclick="revealCard(this)">
             <span class="card-emoji">💝</span>
-            <span class="card-title">You!</span>
-            <span class="card-message">
-              Bas tumhara tum hona hi kaafi special hai.
-            </span>
-            <span class="tap-hint">Tap to reveal 💌</span>
+            <strong>You!</strong>
+            <span class="message">Bas tumhara tum hona hi kaafi special hai.</span>
+            <small>Tap to reveal 💌</small>
           </button>
-
         </div>
 
-        <p id="cardProgress" class="progress-text">
-          0 / 6 cards discovered
-        </p>
+        <p id="cardProgress" class="progress">0 / 6 cards discovered</p>
 
-        <div class="nav-buttons">
-          <button class="back-btn" onclick="goToSection(2)">
-            ← BACK
-          </button>
-
-          <button class="main-btn hidden" id="adoreNext"
-            onclick="goToSection(4)">
+        <nav class="nav">
+          <button class="back" onclick="goToSection(2)">← BACK</button>
+          <button class="primary hidden" id="adoreNext" onclick="goToSection(4)">
             NEXT →
           </button>
-        </div>
-
-      </div>
+        </nav>
+      </article>
     </section>
 
-
-    <!-- SECTION 4: 10 REASONS -->
+    <!-- SECTION 4: TEN REASONS -->
     <section class="screen" id="section4">
-
-      <div class="content-card">
-
-        <div class="top-emoji">🎀</div>
-
-        <p class="small-heading">TEN LITTLE THINGS</p>
-
+      <article class="card">
+        <div class="emoji">🎀</div>
+        <p class="eyebrow">TEN LITTLE THINGS</p>
         <h2>10 Little Reasons</h2>
+        <p class="intro">10 chhoti si reasons ki tum itni special kyun ho!</p>
 
-        <p class="description">
-          10 chhoti si reasons ki tum itni special kyun ho!
-        </p>
-
-        <div class="reasons-list">
-          <div class="reason">01. Tumhari cute si smile 😊</div>
-          <div class="reason">02. Tumhara caring nature 💗</div>
-          <div class="reason">03. Tumhari random baatein 😂</div>
-          <div class="reason">04. Tumhara unique andaaz 🌸</div>
-          <div class="reason">05. Tumhari kindness 🦋</div>
-          <div class="reason">06. Tumhara sense of humour ✨</div>
-          <div class="reason">07. Tumhara honest hona 💌</div>
-          <div class="reason">08. Tumhari positive vibe 🌈</div>
-          <div class="reason">09. Tumhare saath ki memories 🧸</div>
-          <div class="reason">10. Kyunki tum simply tum ho! 💝</div>
+        <div class="reasons">
+          <div>01. Tumhari cute si smile 😊</div>
+          <div>02. Tumhara caring nature 💗</div>
+          <div>03. Tumhari random baatein 😂</div>
+          <div>04. Tumhara unique andaaz 🌸</div>
+          <div>05. Tumhari kindness 🦋</div>
+          <div>06. Tumhara sense of humour ✨</div>
+          <div>07. Tumhara honest hona 💌</div>
+          <div>08. Tumhari positive vibe 🌈</div>
+          <div>09. Tumhare saath ki memories 🧸</div>
+          <div>10. Kyunki tum simply tum ho! 💝</div>
         </div>
 
-        <div class="nav-buttons">
-          <button class="back-btn" onclick="goToSection(3)">
-            ← BACK
-          </button>
-          <button class="main-btn" onclick="goToSection(5)">
-            NEXT →
-          </button>
-        </div>
-
-      </div>
+        <nav class="nav">
+          <button class="back" onclick="goToSection(3)">← BACK</button>
+          <button class="primary" onclick="goToSection(5)">NEXT →</button>
+        </nav>
+      </article>
     </section>
-
 
     <!-- SECTION 5: LOVE LETTER -->
     <section class="screen" id="section5">
-
-      <div class="content-card">
-
-        <div class="top-emoji">💌</div>
-
-        <p class="small-heading">A LITTLE SECRET</p>
-
+      <article class="card">
+        <div class="emoji">💌</div>
+        <p class="eyebrow">A LITTLE SECRET</p>
         <h2>Ek Chhota Sa Letter...</h2>
-
-        <p class="description">
+        <p class="intro">
           Is envelope ko open karo. Iske andar kuch dil ki baatein hain.
         </p>
 
-        <button class="envelope" id="envelopeButton"
-          onclick="openLetter()">
+        <button class="envelope" id="envelopeButton" onclick="openLetter()">
           <span>💌</span>
-          <span class="envelope-text">OPEN ME</span>
+          <b>OPEN ME</b>
         </button>
 
         <div class="letter hidden" id="loveLetter">
-
           <h3>Dear Someone Special, 💗</h3>
 
           <p>
-            Pata nahi ye sab kaise kahun, par tum meri life ke
-            un logon mein se ho jinke saath baat karke genuinely
-            achha feel hota hai.
+            Pata nahi ye sab kaise kahun, par tum meri life ke un
+            logon mein se ho jinke saath baat karke genuinely achha feel hota hai.
           </p>
 
           <p>
@@ -283,202 +225,128 @@
             Tumhari friendship bhi mere liye precious hai.
           </p>
 
-          <p class="letter-ending">
+          <p class="signoff">
             Bas itna hi kehna tha...<br>
             You are genuinely special. 🌷
           </p>
-
         </div>
 
-        <div class="nav-buttons">
-          <button class="back-btn" onclick="goToSection(4)">
-            ← BACK
-          </button>
-
-          <button class="main-btn hidden" id="letterNext"
-            onclick="goToSection(6)">
+        <nav class="nav">
+          <button class="back" onclick="goToSection(4)">← BACK</button>
+          <button class="primary hidden" id="letterNext" onclick="goToSection(6)">
             NEXT →
           </button>
-        </div>
-
-      </div>
+        </nav>
+      </article>
     </section>
-
 
     <!-- SECTION 6: BEFORE I TELL YOU -->
     <section class="screen" id="section6">
-
-      <div class="content-card">
-
-        <div class="top-emoji">🥺</div>
-
-        <p class="small-heading">ONE LAST THING</p>
-
+      <article class="card">
+        <div class="emoji">🥺</div>
+        <p class="eyebrow">ONE LAST THING</p>
         <h2>Before I Tell You Something...</h2>
-
-        <p class="description">
-          Ab tak jo bhi tha, woh dil se tha.
-          Lekin ab ek baat hai jo main tumse kehna chahti hoon.
+        <p class="intro">
+          Ab tak jo bhi tha, woh dil se tha. Lekin ab ek baat hai
+          jo main tumse kehna chahti hoon.
         </p>
 
-        <div class="special-note">
-          "Kabhi-kabhi kisi ki friendship itni beautiful hoti hai
-          ki dil mein ek special feeling aa jaati hai..." 💗
+        <div class="quote">
+          “Kabhi-kabhi kisi ki friendship itni beautiful hoti hai
+          ki dil mein ek special feeling aa jaati hai...” 💗
         </div>
 
-        <div class="nav-buttons">
-          <button class="back-btn" onclick="goToSection(5)">
-            ← BACK
-          </button>
-          <button class="main-btn" onclick="goToSection(7)">
-            TELL ME MORE →
-          </button>
-        </div>
-
-      </div>
+        <nav class="nav">
+          <button class="back" onclick="goToSection(5)">← BACK</button>
+          <button class="primary" onclick="goToSection(7)">TELL ME MORE →</button>
+        </nav>
+      </article>
     </section>
-
 
     <!-- SECTION 7: PROPOSAL INTRO -->
     <section class="screen" id="section7">
-
-      <div class="content-card">
-
-        <div class="top-emoji">💝</div>
-
-        <p class="small-heading">A LITTLE QUESTION</p>
-
+      <article class="card">
+        <div class="emoji">💝</div>
+        <p class="eyebrow">A LITTLE QUESTION</p>
         <h2>Can I Ask You Something?</h2>
-
-        <p class="description">
+        <p class="intro">
           Thoda sa nervous hoon, but ye baat tumse kehna chahti hoon.
         </p>
 
-        <div class="proposal-box hidden" id="proposalReveal">
-
-          <div class="proposal-emoji">🌹</div>
-
-          <h3>Kya tum meri best friend se kuch aur special
-            banna pasand karogi?</h3>
-
-          <p>
-            Will you be my girlfriend? 🥺👉👈
-          </p>
-
-          <p class="soft-note">
-            No pressure. Tumhara honest answer mere liye important hai.
-          </p>
-
-          <button class="main-btn" onclick="goToSection(8)">
-            CONTINUE 💗
-          </button>
-
-        </div>
-
-        <button class="main-btn" id="revealButton"
-          onclick="revealProposal()">
+        <button class="primary reveal-button" id="revealButton" onclick="revealProposal()">
           OKAY, I'M LISTENING 🌸
         </button>
 
-        <div class="nav-buttons">
-          <button class="back-btn" onclick="goToSection(6)">
-            ← BACK
-          </button>
-
-          <button class="main-btn hidden" id="proposalNext"
-            onclick="goToSection(8)">
-            NEXT →
-          </button>
+        <div class="proposal hidden" id="proposalReveal">
+          <div class="emoji">🌹</div>
+          <h3>Kya tum meri best friend se kuch aur special banna pasand karogi?</h3>
+          <p>Will you be my girlfriend? 🥺👉👈</p>
+          <p class="gentle">No pressure. Tumhara honest answer mere liye important hai.</p>
+          <button class="primary" onclick="goToSection(8)">CONTINUE 💗</button>
         </div>
 
-      </div>
+        <nav class="nav">
+          <button class="back" onclick="goToSection(6)">← BACK</button>
+          <button class="primary hidden" id="proposalNext" onclick="goToSection(8)">
+            NEXT →
+          </button>
+        </nav>
+      </article>
     </section>
-
 
     <!-- SECTION 8: FINAL QUESTION -->
     <section class="screen" id="section8">
-
-      <div class="content-card">
-
-        <div class="top-emoji">💗</div>
-
-        <p class="small-heading">THE LITTLE QUESTION</p>
-
+      <article class="card">
+        <div class="emoji">💗</div>
+        <p class="eyebrow">THE LITTLE QUESTION</p>
         <h2>So... What Do You Say?</h2>
-
-        <p class="description">
+        <p class="intro">
           Koi pressure nahi. Bas jo tumhare dil mein ho,
           wahi answer dena. 💌
         </p>
 
-        <div class="answer-buttons">
-
-          <button class="yes-btn" onclick="sayYes()">
-            YES! 💖
-          </button>
-
-          <button class="time-btn" onclick="needTime()">
-            I NEED SOME TIME 🌷
-          </button>
-
+        <div class="answers">
+          <button class="yes" onclick="sayYes()">YES! 💖</button>
+          <button class="time" onclick="needTime()">I NEED SOME TIME 🌷</button>
         </div>
 
-        <p id="answerMessage" class="answer-message hidden"></p>
+        <p id="answerMessage" class="answer-message hidden" aria-live="polite"></p>
 
-        <button class="back-btn final-back"
-          onclick="goToSection(7)">
+        <button class="back final-back" onclick="goToSection(7)">
           ← BACK
         </button>
-
-      </div>
+      </article>
     </section>
-
 
     <!-- SECTION 9: FINAL SURPRISE -->
     <section class="screen" id="section9">
-
-      <div class="content-card final-card">
-
-        <div class="top-emoji">🎉</div>
-
-        <p class="small-heading">A SPECIAL FINAL SURPRISE</p>
-
+      <article class="card">
+        <div class="emoji">🎉</div>
+        <p class="eyebrow">A SPECIAL FINAL SURPRISE</p>
         <h1>Thank You! 💗</h1>
-
-        <div class="final-heart">💖</div>
-
+        <div class="big-heart">💖</div>
         <h2>You're Truly Special!</h2>
 
-        <p class="description">
-          Tumhara answer jo bhi ho, thank you meri baat
-          sunne ke liye aur is little journey ka part banne ke liye.
+        <p class="intro">
+          Tumhara answer jo bhi ho, thank you meri baat sunne ke liye
+          aur is little journey ka part banne ke liye.
         </p>
 
-        <div class="special-note">
-          "Some people make ordinary moments feel extraordinary." 🌸
+        <div class="quote">
+          “Some people make ordinary moments feel extraordinary.” 🌸
         </div>
 
-        <p class="final-message">
-          Keep smiling. Keep shining. Stay wonderful! ✨
-        </p>
+        <p class="signoff">Keep smiling. Keep shining. Stay wonderful! ✨</p>
 
-        <div class="nav-buttons">
-          <button class="back-btn" onclick="goToSection(8)">
-            ← BACK
-          </button>
-
-          <button class="main-btn" onclick="replayWebsite()">
-            REPLAY JOURNEY ↻
-          </button>
-        </div>
-
-      </div>
+        <nav class="nav">
+          <button class="back" onclick="goToSection(8)">← BACK</button>
+          <button class="primary" onclick="replayWebsite()">REPLAY JOURNEY ↻</button>
+        </nav>
+      </article>
     </section>
 
   </main>
 
-  <script src="script.js"></script>
-
+  <script src="./script.js"></script>
 </body>
 </html>
-
